@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  eventstore:
+    image: eventstore/eventstore
+    command: --db /data/eventstore
+    ports:
+      - 1113:1113
+      - 2113:2113
+    volumes:
+      - eventstore-data:/var/lib/eventstore
+      # - "~/Data/eventstore3node/node1:/var/lib/eventstore"
+
+volumes:
+  eventstore-data: 
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /temporal/eventstore
+  # eventstore-data: /temp/eventstore
